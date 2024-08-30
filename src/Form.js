@@ -32,8 +32,9 @@ export default function Form(props) {
     }
     const handleCopy = () => {
       let text = document.getElementById('myBox');
-      text.select()
+      text.select();
       navigator.clipboard.writeText(text.value);
+      document.getSelection().removeAllRanges();
       props.showAlert("Text Copied to Clipboard", 'info');
     }
     const handleExtraSpaces = () => {
@@ -47,40 +48,40 @@ export default function Form(props) {
 
     const [text, setText] = useState('')
 
-    const emptytexting = () => {
-        if(text==="" || text===" "){ return 0 }
-        else {
-        return text.split(' ').length;  
-      }
-    }
-    const emptyReadTime = () => {
-        if(text==="" || text===" "){ return 0 }
-        else {
-        return 0.008*text.split(' ').length.toFixed(2);  
-      }
-    }
+    // const emptytexting = () => {
+    //     if(text==="" || text===" "){ return 0 }
+    //     else {
+    //     return text.split(' ').length;  
+    //   }
+    // }
+    // const emptyReadTime = () => {
+    //     if(text==="" || text===" "){ return 0 }
+    //     else {
+    //     return 0.008*text.split(' ').length.toFixed(2);  
+    //   }
+    // }
 
   return (
     <>
         <div className='container' style={{color: props.mode==='dark'?'white':'#0d1117'}}>
             <h2 className='my-3'>{props.heading}</h2>
             <div className="mb-3">
-                <textarea className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor: props.mode==='dark'?'grey':'white', color: props.mode==='dark'?'white':'#0d1117'}} id="myBox" rows="7"></ textarea>
+                <textarea className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor: props.mode==='dark'?'#131414':'white', color: props.mode==='dark'?'white':'#0d1117'}} id="myBox" rows="7"></ textarea>
             </div>
-            <button className='btn btn-primary mx-2 my-2' onClick={handleOnClick}>Convert to Uppercase</button>
-            <button className='btn btn-primary mx-2 my-2' onClick={handleLowClick}>Convert to Lowercase</button>
-            <button className='btn btn-primary mx-2 my-2' onClick={handleClearClick}>Clear</button>
-            <button className='btn btn-primary mx-2 my-2' onClick={handleInverseClick}>Inverse Text</button>
-            <button type="submit" onClick={speak} className="btn btn-warning mx-2 my-2 my-2">Speak</button>
-            <button className='btn btn-primary mx-2 my-2' onClick={handleCopy}>Copy Text</button>
-            <button className='btn btn-primary mx-2 my-2' onClick={handleExtraSpaces}>Remove Exrta Spaces</button>
+            <button disabled={text.length===0} className='btn btn-primary mx-2 my-2' onClick={handleOnClick}>Convert to Uppercase</button>
+            <button disabled={text.length===0} className='btn btn-primary mx-2 my-2' onClick={handleLowClick}>Convert to Lowercase</button>
+            <button disabled={text.length===0} className='btn btn-primary mx-2 my-2' onClick={handleClearClick}>Clear</button>
+            <button disabled={text.length===0} className='btn btn-primary mx-2 my-2' onClick={handleInverseClick}>Inverse Text</button>
+            <button type="submit" onClick={speak} disabled={text.length===0} className="btn btn-warning mx-2 my-2 my-2">Speak</button>
+            <button disabled={text.length===0} className='btn btn-primary mx-2 my-2' onClick={handleCopy}>Copy Text</button>
+            <button disabled={text.length===0} className='btn btn-primary mx-2 my-2' onClick={handleExtraSpaces}>Remove Extra Spaces</button>
         </div>
         <div className='container my-3' style={{color: props.mode==='dark'?'white':'#0d1117'}}>
             <h2>Your Text Summary</h2>
-            <p>{emptytexting()} words and {text.length} characters</p>
-            <p>{emptyReadTime()} minutes read</p>
+            <p>{text.split(' ').filter((element)=>{return element.length!==0}).length} words and {text.length} characters</p>
+            <p>{0.008*text.split(' ').filter((element)=>{return element.length!==0}).length.toFixed(2)} minutes read</p>
             <h2>Preview</h2>
-            <p>{text}</p>
+            <p>{text.length>0?text:'Nothing to Preview'}</p>
         </div>
     </>
   )

@@ -1,33 +1,35 @@
-import React, {useState} from 'react'
+import React 
+// ,{useState} 
+from 'react'
 
 export default function About(props) {
-    const [myStyle, setMyStyle] = useState({
-        color: 'black',
-        backgroundColor: 'white'
-    })
-    const [btnText, setBtnText] = useState('Enable Dark Mode')
+    // const [myStyle, setMyStyle] = useState({
+    //     color: 'black',
+    //     backgroundColor: 'white'
+    // })
+    // const [btnText, setBtnText] = useState('Enable Dark Mode')
 
-    const toggleStyle = () => {
-        if(myStyle.color==='black'){
-            setMyStyle({
-                color: 'white',
-                backgroundColor: 'black',
-                border: '1px solid white'
-            })
-            setBtnText('Enable Light Mode')
-        }
-        else{
-            setMyStyle({
-                color: 'black',
-                backgroundColor: 'white'
-            })
-            setBtnText('Enable Dark Mode');
-        }
-    }
+    // const toggleStyle = () => {
+    //     if(myStyle.color==='black'){
+    //         setMyStyle({
+    //             color: 'white',
+    //             backgroundColor: 'black',
+    //             border: '1px solid white'
+    //         })
+    //         setBtnText('Enable Light Mode')
+    //     }
+    //     else{
+    //         setMyStyle({
+    //             color: 'black',
+    //             backgroundColor: 'white'
+    //         })
+    //         setBtnText('Enable Dark Mode');
+    //     }
+    // }
 
     return (
     <div>
-        <div className="accordion container" style={{color: props.mode==='dark'?'white':'#0d1117', backgroundColor:props.mode==='dark'?'#0d1117':'white'}} id="accordionExample" >
+        <div className="accordion container my-3" style={{color: props.mode==='dark'?'white':'#0d1117', backgroundColor:props.mode==='dark'?'#0d1117':'white'}} id="accordionExample" >
             <h2>About us</h2>
             <div className="accordion-item" style={{color: props.mode==='dark'?'white':'#0d1117' , backgroundColor:props.mode==='dark'?'#0d1117':'white'}}>
                 <h2 className="accordion-header">
@@ -66,9 +68,9 @@ export default function About(props) {
                 </div>
             </div>
         </div>
-        <div className='container'>
+        {/* <div className='container'>
             <button className='btn btn-primary my-4' type='button' onClick={toggleStyle}>{btnText}</button>
-        </div>
+        </div> */}
     </div>
   )
 }

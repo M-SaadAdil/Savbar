@@ -1,13 +1,13 @@
-// import {
-  //   BrowserRouter,
-  //   RouterProvider,
-  //   Route, 
-  //   Routes
-  // } from "react-router-dom";
+import {
+    BrowserRouter,
+    // RouterProvider,
+    Route, 
+    Routes
+  } from "react-router-dom";
 import Navbar from './Navbar';
 import './App.css';
 import Form from './Form';
-// import About from './About';
+import About from './About';
 import React, {useState} from 'react';
 import Alert from './Alert'
 
@@ -67,19 +67,19 @@ function App() {
 
   return (
     <>
-      {/* <BrowserRouter> */}
+      <BrowserRouter>
         <Navbar
           title="Savbar" 
           mode={mode} /*toggleMode2={toggleMode2}*/ toggleMode1={toggleMode1} 
         />
         <Alert alert={alert} />
         <div className="container">
-          <Form heading="Enter Your Text Here"
+          {/* <Form heading="Enter Your Text Here"
                 mode={mode} 
                 showAlert={showAlert}
-          />
+          /> */}
         </div>
-        {/* <Routes>
+        <Routes>
           <Route path="/about" element={<About mode={mode} />}>
           </Route>
           <Route exact path="/" element={<Form heading="Enter Your Text Here"
@@ -88,8 +88,8 @@ function App() {
           />}>
           </Route>
         </Routes>
-      </BrowserRouter> */}
-      {/* <About mode={mode} /> */}
+      </BrowserRouter>
+        {/* <About mode={mode} /> */}
     </>
   );
 }
